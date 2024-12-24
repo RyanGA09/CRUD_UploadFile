@@ -1,0 +1,13 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Ensure that the RewriteBase is set to the public folder
+RewriteBase /public/
+
+# Redirect all requests to index.php except for existing files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
+
+# Optional: Disable directory browsing
+Options -Indexes
