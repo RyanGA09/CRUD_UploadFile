@@ -8,13 +8,21 @@ $controller = new Controller($db);
 $action = $_GET['action'] ?? 'index';
 $id = $_GET['id'] ?? null;
 
-if ($action === 'index') {
-    $controller->index();
-} elseif ($action === 'upload') {
-    $controller->upload();
-} elseif ($action === 'delete' && $id) {
-    $controller->delete($id);
-} elseif ($action === 'view' && $id) {
-    $controller->view($id);
+switch ($action) {
+    case 'index':
+        $controller->index();
+        break;
+    case 'upload':
+        $controller->upload();
+        break;
+    case 'delete':
+        if ($id) $controller->delete($id);
+        break;
+    case 'view':
+        if ($id) $controller->view($id);
+        break;
+    default:
+        echo "Page not found!";
 }
+
 

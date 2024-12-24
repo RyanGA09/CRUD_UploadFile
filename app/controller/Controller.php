@@ -15,10 +15,23 @@ class Controller {
 
     public function upload() {
         if (isset($_POST['upload'])) {
-            $name = $_POST['name'];
+            $name = htmlspecialchars($_POST['name']);
             $file = $_FILES['file'];
+            $allowedTypes = ['image/jpeg', 'image/png', 'application/pdf']; // Contoh tipe file yang diperbolehkan
+            $maxSize = 5 * 1024 * 1024; // Maksimum ukuran file 5MB
+
+            if (!in_array($file['type'], $allowedTypes)) {
+                echo "File type not allowed!";
+                return;
+            }
+            if ($file['size'] > $maxSize) {
+                echo "File size exceeds the limit!";
+                return;
+            }
+
             $targetDir = "../public/uploads/";
-            $targetFile = $targetDir . basename($file['name']);
+            $fileName = time() . "_" . basename($file['name']);
+            $targetFile = $targetDir . $fileName;
 
             if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                 $this->model->uploadFile($name, $targetFile);
@@ -29,6 +42,7 @@ class Controller {
         }
         require "../app/views/files/add.php";
     }
+
 
     public function delete($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmDelete'])) {
