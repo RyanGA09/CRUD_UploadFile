@@ -23,9 +23,9 @@ A simple web application built using PHP with the MVC architecture to manage fil
 /project-root
 ├── /app
 │ ├── /controllers
-│ │ └── FileController.php
+│ │ └── Controller.php
 │ ├── /models
-│ │ └── FileModel.php
+│ │ └── Model.php
 │ ├── /views
 │ │ ├── /files
 │ │ │ ├── index.php
@@ -48,3 +48,47 @@ A simple web application built using PHP with the MVC architecture to manage fil
 ├── LICENSE
 └── README.md
 ```
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/CRUD_UploadFile.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd CRUD_UploadFile
+   ```
+
+3. Set up the database:
+
+   - Create a MySQL database named `file_upload_mvc`
+   - Import the `file_upload_mvc.sql` file in the repository.
+
+4. Update database credentials in `/app/core/Database.php`:
+
+   ```php
+   private $host = "localhost";
+   private $dbname = "file_upload_mvc";
+   private $username = "root";
+   private $password = "";
+   ```
+
+5. Run the project on a local server (e.g., XAMPP, WAMP):
+   - Place the project in the `htdocs` folder (for XAMPP) or equivalent.
+   - Access the project at `http://localhost/CRUD_UploadFile/public/index.php`.
+
+## Usage
+
+- Home Page: View all uploaded files.
+- Upload Page: Add new files to the server.
+- Delete: Remove files permanently.
+
+## License
+
+&copy; 2024 Ryan Gading Abdullah. All rights reserved.
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
